@@ -1,0 +1,27 @@
+*body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+.pic {
+  height:100%;
+  width:100%;
+  border: 1px solid black;
+  padding: 5px;
+  
+}
+
+ul {
+  column-count: 2;
+  list-style-type: square;
+  }
+
+.ingredients li{
+   padding-left: 10px;
+}
