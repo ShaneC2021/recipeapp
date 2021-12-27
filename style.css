@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+h2{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: italic;
+  font-weight:bolder;
+}
 
 a {
   text-decoration: none;
@@ -12,16 +17,30 @@ a {
 .pic {
   height:100%;
   width:100%;
-  border: 1px solid black;
   padding: 5px;
   
 }
 
 ul {
-  column-count: 2;
+  column-count: 3;
   list-style-type: square;
   }
 
 .ingredients li{
    padding-left: 10px;
+}
+
+.bg-instructions{
+  background-color: rgb(12, 12, 109);
+  color:black;
+  font-weight: bold;
+}
+
+.bg-ingredients {
+  background-color:rgb(177, 177, 221);
+  color:black;
+}
+.bg-header {
+  background: linear-gradient(45deg, rgb(15, 161, 47), rgb(201, 214, 15), rgb(15, 165, 202));
+  color:black;
 }
