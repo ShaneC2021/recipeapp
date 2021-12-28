@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
- fetch();
+  fetch();
 });
 
 load = (responseObject) => {
@@ -20,18 +20,19 @@ load = (responseObject) => {
       arrayOfKeys.push(properties);
     }
   }
+  getAllKeys(arrayOfKeys, obj, arrayOfIngredients);
+  intsructions.innerText = obj.strInstructions;
+  embedStr = obj.strYoutube;
+  embedVid(embedStr);
+  getIngredients(arrayOfIngredients);
+};
 
-  for (let keys of arrayOfKeys) {
+const getAllKeys = (array, obj, arrayOfIngredients) => {
+  for (let keys of array) {
     if (obj[keys] !== null && obj[keys] !== "") {
       arrayOfIngredients.push(obj[keys]);
     }
   }
-
-  intsructions.innerText = obj.strInstructions;
-  embedStr = obj.strYoutube;
-
-  embedVid(embedStr);
-  getIngredients(arrayOfIngredients);
 };
 
 const getIngredients = (array) => {
