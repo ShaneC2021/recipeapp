@@ -1,19 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const fetchRecipe = () => {
-    axios
-      .get("https://www.themealdb.com/api/json/v1/1/random.php")
-      .then(function (response) {
-        // handle success
-        console.log(response.data.meals);
-        load(response);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
-  };
-
-  fetchRecipe();
+ fetch();
 });
 
 load = (responseObject) => {
@@ -24,23 +10,20 @@ load = (responseObject) => {
   const arrayOfObjProps = Object.keys(obj);
   const arrayOfKeys = [];
   const arrayOfIngredients = [];
-
-  let node;
   let embedStr;
-  let ingredient;
-  let textNode;
 
   randomRecipe.innerText = responseObject.data.meals[0].strMeal;
   mealThumb.src = obj.strMealThumb;
 
-  for (let i = 0; i < arrayOfObjProps.length; i++) {
-    if (arrayOfObjProps[i].includes("strIngredient")) {
-      arrayOfKeys.push(arrayOfObjProps[i]);
+  for (let properties of arrayOfObjProps) {
+    if (properties.includes("strIngredient")) {
+      arrayOfKeys.push(properties);
     }
   }
-  for (let i = 0; i < arrayOfKeys.length; i++) {
-    if (obj[arrayOfKeys[i]] !== null && obj[arrayOfKeys[i]] !== "") {
-      arrayOfIngredients.push(obj[arrayOfKeys[i]]);
+
+  for (let keys of arrayOfKeys) {
+    if (obj[keys] !== null && obj[keys] !== "") {
+      arrayOfIngredients.push(obj[keys]);
     }
   }
 
@@ -48,12 +31,17 @@ load = (responseObject) => {
   embedStr = obj.strYoutube;
 
   embedVid(embedStr);
+  getIngredients(arrayOfIngredients);
+};
 
-  /*  Could be it's own function ,dynamically creates a list from the array of ingredients returned from the api response object*/
-  for (let i = 0; i < arrayOfIngredients.length; i++) {
+const getIngredients = (array) => {
+  let node;
+  let textNode;
+  let ingredient;
+
+  for (let element of array) {
     node = document.createElement("LI");
-    ingredient = arrayOfIngredients[i];
-    console.log(ingredient);
+    ingredient = element;
     textNode = document.createTextNode(ingredient);
     node.appendChild(textNode);
     document.getElementById("ingredients").appendChild(node);
@@ -62,12 +50,6 @@ load = (responseObject) => {
 
 /* grabs id string specific  to each youtube videos to enable them to be embedded in the site dynamically
    Did this to find away around having to leave the site when clicking on a button to see the video.
-   Initially was running into cross origin blocks "Corbs" when i tried to link the video via it's src attribute
-   whereas using  a href element worked fine when I used the source strYoutube returned by the api response object.
-   Embedding videos on the page worked fine. So I figured if I could grab the specific ids and update the video src
-   dynamically. Developer console is saying the page has errors due to this but it's working  ??
-
-   No errors when I use href attribute from <a>
 
 */
 function embedVid(string) {

@@ -31,16 +31,16 @@ ul {
 }
 
 .bg-instructions{
-  background-color: rgb(12, 12, 109);
+  background-color: rgb(61, 187, 114);
   color:black;
   font-weight: bold;
 }
 
 .bg-ingredients {
-  background-color:rgb(177, 177, 221);
+  background-color:rgb(23, 151, 211);
   color:black;
 }
 .bg-header {
-  background: linear-gradient(45deg, rgb(15, 161, 47), rgb(201, 214, 15), rgb(15, 165, 202));
+  background: linear-gradient(45deg, rgb(161, 15, 27), rgb(201, 214, 15), rgb(15, 165, 202));
   color:black;
 }
