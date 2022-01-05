@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {
-  fetch();
-});
+document.addEventListener("DOMContentLoaded", //() => {
+  fetch() );
+//});
 
 load = (responseObject) => {
   const intsructions = document.getElementById("instructions");
@@ -12,7 +12,7 @@ load = (responseObject) => {
   const arrayOfIngredients = [];
   let embedStr;
 
-  randomRecipe.innerText = responseObject.data.meals[0].strMeal;
+  randomRecipe.innerText = obj.strMeal;
   mealThumb.src = obj.strMealThumb;
 
   for (let properties of arrayOfObjProps) {
@@ -25,6 +25,7 @@ load = (responseObject) => {
   embedStr = obj.strYoutube;
   embedVid(embedStr);
   getIngredients(arrayOfIngredients);
+  console.log(arrayOfIngredients);
 };
 
 const getAllKeys = (array, obj, arrayOfIngredients) => {
@@ -38,11 +39,10 @@ const getAllKeys = (array, obj, arrayOfIngredients) => {
 const getIngredients = (array) => {
   let node;
   let textNode;
-  let ingredient;
+  document.getElementById("ingredients").innerText = "";
 
-  for (let element of array) {
+  for (let ingredient of array) {
     node = document.createElement("LI");
-    ingredient = element;
     textNode = document.createTextNode(ingredient);
     node.appendChild(textNode);
     document.getElementById("ingredients").appendChild(node);
